@@ -1,0 +1,182 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -656,
+        0
+      ],
+      "id": "49b114e0-10af-4ff2-9caf-43d1c80c157a",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "50989991-2e01-4d51-ae17-ed521c88a7a9",
+              "name": "tasks",
+              "value": "study,assignment,guys",
+              "type": "string"
+            },
+            {
+              "id": "b65b3ee8-1955-4aff-86f6-ead197c35a26",
+              "name": "working hours",
+              "value": "9 AM to 9PM",
+              "type": "string"
+            },
+            {
+              "id": "b30de68a-529b-4b40-8bc4-8fe5927de8fb",
+              "name": "focus time",
+              "value": "2 hrs",
+              "type": "string"
+            },
+            {
+              "id": "9ccee31a-2daf-4b8a-ae1c-1d30af9a5fc4",
+              "name": "breaks",
+              "value": "yes",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -272,
+        0
+      ],
+      "id": "9b83fafc-aaf9-4626-bf7c-852518ebdd62",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=AIzaSyCFkem14c-9kZzB9Z9-4v-HpWYKH9xqXLo",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\n  \"Content-Type\": \"application/json\"\n}",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "={   \"contents\": [     {       \"parts\": [         {           \"text\": \"You are an AI productivity planner.\\n\\nHere is the user's information:\\nTasks: {{$json.tasks}}\\nWorking Hours: {{$json.working_hours}}\\nFocus Time Requirement: {{$json.focus_time}}\\nBreak Preferences: {{$json.breaks}}\\n\\nPlease generate a complete time-blocked daily schedule.\\n\\nReturn STRICT JSON ONLY:\\n{\\n  \\\"plan\\\": [\\n    {\\\"time\\\": \\\"\\\", \\\"task\\\": \\\"\\\"}\\n  ],\\n  \\\"tips\\\": \\\"short productivity tips\\\"\\n}\"         }       ]     }   ] }",
+        "body": "={\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": \"Generate a simple daily schedule\"\n        }\n      ]\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        96,
+        0
+      ],
+      "id": "a52ad4d2-47fe-40fa-a63e-b39d4f5d54c5",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        496,
+        0
+      ],
+      "id": "b33b6f5f-31d3-4cf5-8b57-141f4ff23a7f",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "sendTo": "sce23am033@sairamtap.edu.in",
+        "subject": "Remainder",
+        "message": "\"Upcoming: Meeting at 2PM. Make sure you're ready on time!\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        832,
+        0
+      ],
+      "id": "777fe56d-e7bf-49f9-b84e-9c1e390d10b5",
+      "name": "Send a message",
+      "webhookId": "0f0c9b10-30f7-4907-ad62-4be4f12f6920",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ijY2h8vJEoLfEb4C",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "914a1b14-a09a-4a45-b604-07f136e6a521",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "dbc2715a1ab1962125422e5a828e38cc2f1a0fcdfa14a28c3520e12f931e58c5"
+  },
+  "id": "1xbP8F1WW6VUEtoT",
+  "tags": []
+}
