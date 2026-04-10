@@ -34,7 +34,7 @@ Sends generated schedules directly to users
 Converts AI output into structured usable data
 
 Workflow:
-*User Input → Trigger → Gemini API → Schedule Generation → Email Delivery
+User Input → Trigger → Gemini API → Schedule Generation → Email Delivery
 
 Step-by-step:
 1.User inputs tasks
