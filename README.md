@@ -1,7 +1,7 @@
 # PlanSmart-AI-Daily-Planner
 
 PlanSmart AI – Daily Planner
-*An AI-powered smart scheduling system that automates daily planning, prioritizes tasks, and improves productivity using workflow automation and generative AI.
+An AI-powered smart scheduling system that automates daily planning, prioritizes tasks, and improves productivity using workflow automation and generative AI.
 
 Problem Statemen-Most people suck at managing their time effectively — and my project directly targets that:
 
@@ -11,11 +11,10 @@ Problem Statemen-Most people suck at managing their time effectively — and my 
 4. Lack of structured daily routines
 
 Objective-Build a system that actually thinks instead of just listing tasks:
-
-*Generate AI-based daily schedules
-*Create time-blocked plans automatically
-*Prioritize tasks intelligently
-*provide productivity suggestions
+Generate AI-based daily schedules
+Create time-blocked plans automatically
+Prioritize tasks intelligently
+*rovide productivity suggestions
 
 Key Features:
 1.AI-generated daily schedules
@@ -26,13 +25,13 @@ Key Features:
 
 Tech Stack:
 1.n8n
-*Handles automation and workflow orchestration
+Handles automation and workflow orchestration
 2.Google Gemini API
-*Used for intelligent task analysis and schedule generation
+Used for intelligent task analysis and schedule generation
 3.Email Integration
-*Sends generated schedules directly to users
+Sends generated schedules directly to users
 4.JSON Parsing
-*Converts AI output into structured usable data
+Converts AI output into structured usable data
 
 Workflow:
 *User Input → Trigger → Gemini API → Schedule Generation → Email Delivery
